@@ -1,21 +1,26 @@
 # Morseficator
 
-**TODO: Add description**
+A package to convert text into morse code
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `morseficator` to your list of dependencies in `mix.exs`:
-
+To install dependecies and run a REPL execute the following:
+```
+$ mix deps.get
+$ iex -S mix
+```
+## How to use it?
 ```elixir
-def deps do
-  [
-    {:morseficator, "~> 0.1.0"}
-  ]
-end
+iex(1)> Morseficator.convert("Goedemorgen")       
+["--.", "---", ".", "-..", ".", "--", "---", ".-.", "--.", ".", "-."]
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/morseficator](https://hexdocs.pm/morseficator).
+To run tests:
+```
+mix test
+```
 
+If you want to generate the documentation:
+```
+mix docs
+```
