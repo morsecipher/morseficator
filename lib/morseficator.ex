@@ -3,12 +3,13 @@ defmodule Morseficator do
     A method to convert text to morse code
 
   ## Examples
-      iex> Morseficator.convert("HaHahA")
-      ["....", ".-", "....", ".-", "....", ".-"]
+      iex> Morseficator.convert("SoS sos")
+      "...---... ...---..."
   """
   def convert(text) do
     to_characters(text)
     |> to_morse
+    |> Enum.join
   end
 
   @doc """

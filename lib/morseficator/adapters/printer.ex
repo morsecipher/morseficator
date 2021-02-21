@@ -1,4 +1,6 @@
 defmodule Morseficator.Adapter.Printer do
+  @behaviour Morseficator.Adapter
+
   def setup do
     {}
   end
