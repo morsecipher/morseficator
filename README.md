@@ -28,7 +28,7 @@ $ iex -S mix
 ```
 ## How to use it?
 ```elixir
-iex(1)> Morseficator.convert("Goedemorgen")       
+iex(1)> Morseficator.convert("sos")       
 "...---..."
 ```
 
