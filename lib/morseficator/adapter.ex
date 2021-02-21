@@ -1,21 +1,19 @@
 defmodule Morseficator.Adapter do
   def interpret(text, adapter) do
-    phrase = Morseficator.convert(text)
+    morse_code = Morseficator.convert(text) |> Enum.join |> String.codepoints
+    ctx = adapter.setup
 
-    Enum.each(phrase, fn code ->
-      Enum.each(Morseficator.to_characters(code), fn code ->
-        interpret_morse(code, adapter)
-      end)
-
-      adapter.pause
+    Enum.each(morse_code, fn code ->
+      interpret_morse(code, adapter, ctx)
+      adapter.sleep(3)
     end)
   end
 
-  def interpret_morse(code, adapter) do
+  def interpret_morse(code, adapter, ctx) do
     case code do
-      "." -> adapter.beep
-      "-" -> adapter.beep_3x
-      " " -> adapter.sleep
+      "." -> adapter.beep(ctx)
+      "-" -> adapter.beep_3x(ctx)
+      " " -> adapter.sleep(4)
     end
   end
 end

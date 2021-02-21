@@ -1,17 +1,17 @@
 defmodule Morseficator.Adapter.Printer do
-  def pause do
-    IO.puts "*pause*"
+  def setup do
+    {}
   end
 
-  def beep do
+  def beep(_) do
     IO.puts "*beep*"
   end
 
-  def beep_3x do
+  def beep_3x(_) do
     IO.puts "*beep-beep-beep*"
   end
 
-  def sleep do
-    IO.puts "*sleep*"
+  def sleep(n) do
+    IO.puts "*sleep (#{n})*"
   end
 end
