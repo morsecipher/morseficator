@@ -4,6 +4,23 @@ A package to convert text into morse code
 
 ## Installation
 
+In order to use `Morseficator.Adapter.Midi` you have to install fluidsynth library.
+
+On OSX: 
+```
+brew install fluidsynth
+```
+
+On Debian/Ubuntu:
+```
+sudo apt install libfluidsynth-dev
+```
+
+On Fedora:
+```
+sudo dnf install fluidsynth-devel
+```
+
 To install dependecies and run a REPL execute the following:
 ```
 $ mix deps.get
@@ -12,7 +29,12 @@ $ iex -S mix
 ## How to use it?
 ```elixir
 iex(1)> Morseficator.convert("Goedemorgen")       
-["--.", "---", ".", "-..", ".", "--", "---", ".-.", "--.", ".", "-."]
+"...---..."
+```
+
+In case you want to play audio via MIDISynth library you can use `Morseficator.Adapter.Midi` adapter:
+```elixir
+iex(1) Morseficator.Adapter.interpret("sos sos sos", Morseficator.Adapter.Midi)
 ```
 
 To run tests:

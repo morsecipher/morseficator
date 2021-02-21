@@ -21,7 +21,8 @@ defmodule Morseficator.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:ex_doc, "~> 0.12"}
+      {:ex_doc, "~> 0.12"},
+      {:midi_synth, "~> 0.4.0"}
     ]
   end
 end

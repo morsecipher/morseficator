@@ -3,22 +3,23 @@ defmodule Morseficator do
     A method to convert text to morse code
 
   ## Examples
-      iex> Morseficator.convert("HaHahA")
-      ["....", ".-", "....", ".-", "....", ".-"]
+      iex> Morseficator.convert("SoS sos")
+      "...---... ...---..."
   """
   def convert(text) do
-    split_into_characters(text)
-    |> convert_to_morse
+    to_characters(text)
+    |> to_morse
+    |> Enum.join
   end
 
   @doc """
     A method to split string into characters
 
   ## Examples:
-      iex> Morseficator.split_into_characters("Hello")
+      iex> Morseficator.to_characters("Hello")
       ["H", "e", "l", "l", "o"]
   """
-  def split_into_characters(string) do
+  def to_characters(string) do
     String.codepoints(string)
   end
 
@@ -26,17 +27,17 @@ defmodule Morseficator do
     A method to convert character into morse code
 
   ## Examples:
-      iex> Morseficator.char_to_morse("a")
+      iex> Morseficator.to_morse_char("a")
       ".-"
   """
-  def char_to_morse(character) do
+  def to_morse_char(character) do
     map = %Morseficator.Code{}.alphabet
     map[String.downcase(character)] || " "
   end
 
-  def convert_to_morse(characters) do
+  def to_morse(characters) do
     Enum.map(characters, fn char ->
-      char_to_morse(char)
+      to_morse_char(char)
     end)
   end
 end
