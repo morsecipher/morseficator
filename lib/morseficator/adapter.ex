@@ -1,7 +1,7 @@
 defmodule Morseficator.Adapter do
-  @callback beep(argv :: any()) :: nil
-  @callback beep_3x(argv :: any()) :: nil
-  @callback sleep(argv :: integer()) :: nil
+  @callback beep(argv :: any) :: :ok
+  @callback beep_3x(argv :: any) :: :ok
+  @callback sleep(argv :: integer) :: :ok
   @callback setup :: tuple()
 
   @doc """
@@ -11,6 +11,7 @@ defmodule Morseficator.Adapter do
       iex> Morseficator.Adapter.interpret("sos sos sos", Morseficator.Adapter.Midi)
       :ok
   """
+  @spec interpret(String.t(), module()) :: :ok
   def interpret(text, adapter) do
     morse_code = Morseficator.convert(text) |> String.codepoints
     ctx = adapter.setup
@@ -19,8 +20,11 @@ defmodule Morseficator.Adapter do
       interpret_morse(code, adapter, ctx)
       adapter.sleep(3)
     end)
+
+    :ok
   end
 
+  @spec interpret_morse(<<_::8>>, atom, any) :: any
   def interpret_morse(code, adapter, ctx) do
     case code do
       "." -> adapter.beep(ctx)
