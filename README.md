@@ -2,6 +2,10 @@
 
 A package to convert text into morse code
 
+## Specifications
+
+https://en.wikipedia.org/wiki/Morse_code#/media/File:International_Morse_Code.svg
+
 ## Installation
 
 In order to use `Morseficator.Adapter.Midi` you have to install fluidsynth library.
@@ -28,8 +32,8 @@ $ iex -S mix
 ```
 ## How to use it?
 ```elixir
-iex(1)> Morseficator.convert("sos")       
-"...---..."
+iex(1)> Morseficator.encode("sos")       
+"... --- ..."
 ```
 
 In case you want to play audio via MIDISynth library you can use `Morseficator.Adapter.Midi` adapter:
