@@ -5,8 +5,8 @@ defmodule Morseficator do
     A method to decode morse into text
 
   ## Examples
-      iex> Morseficator.decode("... --- ... / ... --- ...")
-      "sos sos"
+      iex> Morseficator.decode(".... . .-.. .-.. --- / .-- --- .-. .-.. -.. / - .... .. ... / .. ... / .-- --- -. -.. . .-. ..-. ..- .-..")
+      "hello world this is wonderful"
   """
   @spec decode(binary) :: String.t()
   def decode(text) do
