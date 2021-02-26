@@ -1,7 +1,7 @@
 defmodule Morseficator.Adapter.Midi do
   @behaviour Morseficator.Adapter
 
-  @unit 50
+  @unit 30
   @instrument_code 83
   @pitch 78
   @initial_pause 1000
