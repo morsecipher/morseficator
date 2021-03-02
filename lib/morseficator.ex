@@ -1,43 +1,44 @@
 defmodule Morseficator do
+  @encode_alphabet %Morseficator.Code{}.alphabet
+  @decode_alphabet Map.new(@encode_alphabet, fn {key, val} -> {val, key} end)
   @doc """
-    A method to convert text to morse code
+    A method to decode morse into text
 
   ## Examples
-      iex> Morseficator.convert("SoS sos")
-      "...---... ...---..."
+      iex> Morseficator.decode(".... . .-.. .-.. --- / .-- --- .-. .-.. -.. / - .... .. ... / .. ... / .-- --- -. -.. . .-. ..-. ..- .-..")
+      "hello world this is wonderful"
   """
-  def convert(text) do
-    to_characters(text)
-    |> to_morse
+  @spec decode(binary) :: String.t()
+  def decode(text) do
+    text
+    |> String.split(" ")
+    |> Enum.map(&to_letter_char/1)
     |> Enum.join
   end
 
   @doc """
-    A method to split string into characters
+    A method to encode text to morse code
 
-  ## Examples:
-      iex> Morseficator.to_characters("Hello")
-      ["H", "e", "l", "l", "o"]
+  ## Examples
+      iex> Morseficator.encode("SoS sos")
+      "... --- ... / ... --- ..."
   """
-  def to_characters(string) do
-    String.codepoints(string)
+  def encode(text) do
+    text
+    |> String.codepoints
+    |> to_morse
+    |> Enum.join(" ")
   end
 
-  @doc """
-    A method to convert character into morse code
-
-  ## Examples:
-      iex> Morseficator.to_morse_char("a")
-      ".-"
-  """
-  def to_morse_char(character) do
-    map = %Morseficator.Code{}.alphabet
-    map[String.downcase(character)] || " "
+  defp to_letter_char(morse) do
+    @decode_alphabet[morse] || "?"
   end
 
-  def to_morse(characters) do
-    Enum.map(characters, fn char ->
-      to_morse_char(char)
-    end)
+  defp to_morse_char(character) do
+    @encode_alphabet[String.downcase(character)] || "/"
+  end
+
+  defp to_morse(characters) do
+    Enum.map(characters, &to_morse_char/1)
   end
 end
