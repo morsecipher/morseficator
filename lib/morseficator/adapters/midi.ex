@@ -1,7 +1,7 @@
 defmodule Morseficator.Adapter.Midi do
   @behaviour Morseficator.Adapter
 
-  @unit 30
+  @unit 55
   @instrument_code 83
   @pitch 78
   @initial_pause 1000
@@ -16,14 +16,9 @@ defmodule Morseficator.Adapter.Midi do
     {synth}
   end
 
-  @spec beep({atom}) :: :ok
-  def beep({synth}) do
-    MIDISynth.Keyboard.play(synth, @pitch, @unit)
-  end
-
-  @spec beep_3x({atom}) :: :ok
-  def beep_3x({synth}) do
-    MIDISynth.Keyboard.play(synth, @pitch, @unit*3)
+  @spec beep({pid}, non_neg_integer()) :: :ok
+  def beep({synth}, times) do
+    MIDISynth.Keyboard.play(synth, @pitch, @unit*times)
   end
 
   @spec sleep(non_neg_integer) :: :ok
