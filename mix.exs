@@ -22,7 +22,6 @@ defmodule Morseficator.MixProject do
   defp deps do
     [
       {:ex_doc, "~> 0.12"},
-      {:midi_synth, "~> 0.4.0"}
     ]
   end
 end
